@@ -1,7 +1,8 @@
 package com.baishan.greendaodemo.base;
 
 import com.baishan.greendaodemo.http.ApiService;
-import com.baishan.greendaodemo.http.AppClient;
+
+import javax.inject.Inject;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -14,6 +15,7 @@ import rx.subscriptions.CompositeSubscription;
  */
 public class RxPresenter<T extends BaseView> implements BasePresenter<T> {
 
+    @Inject
     protected ApiService apiService;
     protected T mView;
     protected CompositeSubscription mCompositeSubscription;
@@ -38,7 +40,6 @@ public class RxPresenter<T extends BaseView> implements BasePresenter<T> {
     @Override
     public void attachView(T view) {
         this.mView = view;
-        apiService = AppClient.getApiService();
     }
 
     @Override

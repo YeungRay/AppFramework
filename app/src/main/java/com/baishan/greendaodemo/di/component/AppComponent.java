@@ -6,6 +6,7 @@ import com.baishan.greendaodemo.dao.UserDao;
 import com.baishan.greendaodemo.di.ContextLife;
 import com.baishan.greendaodemo.di.module.AppModule;
 import com.baishan.greendaodemo.di.module.DbModule;
+import com.baishan.greendaodemo.http.ApiService;
 
 import javax.inject.Singleton;
 
@@ -24,5 +25,7 @@ public interface AppComponent {
     UserDao getUserDao();
 
     AnimalDao getAnimalDao();
+
+    ApiService getApiService();
 
 }

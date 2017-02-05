@@ -2,6 +2,8 @@ package com.baishan.greendaodemo.di.module;
 
 import com.baishan.greendaodemo.base.BaseApplication;
 import com.baishan.greendaodemo.di.ContextLife;
+import com.baishan.greendaodemo.http.ApiService;
+import com.baishan.greendaodemo.http.AppClient;
 
 import javax.inject.Singleton;
 
@@ -26,5 +28,11 @@ public class AppModule {
     @ContextLife
     BaseApplication provideApplicationContext(){
         return application;
+    }
+
+    @Singleton
+    @Provides
+    ApiService provideApiService(){
+        return AppClient.getApiService();
     }
 }

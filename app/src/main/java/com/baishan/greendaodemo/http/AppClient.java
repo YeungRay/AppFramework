@@ -36,7 +36,6 @@ public class AppClient {
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .client(okHttpClient)
                     .build();
-            mDelivery = new Handler(Looper.getMainLooper());
         }
         return mRetrofit;
     }

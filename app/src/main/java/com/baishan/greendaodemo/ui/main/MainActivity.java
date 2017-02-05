@@ -40,21 +40,21 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     protected void processLogic(Bundle savedInstanceState) {
        destFileDir = Environment.getExternalStorageDirectory().getAbsolutePath();
         destFileName = "yoursex_v1.5.3_other.apk";
-        new FileDownload(destFileDir,destFileName)
-                .download("http://yoursex.cn:8082/html/yoursex_v1.5.3_other.apk", new FileDownload.Callback() {
-                    @Override
-                    public void onError(Exception e) {
-                        Logger.e(e);
-                    }
+                        new FileDownload(destFileDir,destFileName)
+                                .download("http://yoursex.cn:8082/html/yoursex_v1.5.3_other.apk", new FileDownload.Callback() {
+                                    @Override
+                                    public void onError(Exception e) {
+                                        Logger.e(e);
+                                    }
 
-                    @Override
-                    public void onSuccess(File file) {
-                        textView.setText(file.getAbsolutePath());
-                    }
+                                    @Override
+                                    public void onSuccess(File file) {
+                                        textView.setText(file.getAbsolutePath());
+                                    }
 
-                    @Override
-                    public void inProgress(float progress, long total) {
-                        textView.setText(progress+"");
+                                    @Override
+                                    public void inProgress(float progress, long total) {
+                                        textView.setText(progress+"");
                     }
                 });
     }
