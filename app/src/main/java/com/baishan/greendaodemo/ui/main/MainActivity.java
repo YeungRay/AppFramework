@@ -1,17 +1,13 @@
 package com.baishan.greendaodemo.ui.main;
 
 import android.os.Bundle;
-import android.os.Environment;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.baishan.greendaodemo.R;
 import com.baishan.greendaodemo.base.BaseActivity;
-import com.baishan.greendaodemo.http.FileDownload;
 import com.baishan.greendaodemo.model.User;
-import com.orhanobut.logger.Logger;
 
-import java.io.File;
 import java.util.List;
 
 import butterknife.BindView;
@@ -38,25 +34,26 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     protected void processLogic(Bundle savedInstanceState) {
-       destFileDir = Environment.getExternalStorageDirectory().getAbsolutePath();
-        destFileName = "yoursex_v1.5.3_other.apk";
-                        new FileDownload(destFileDir,destFileName)
-                                .download("http://yoursex.cn:8082/html/yoursex_v1.5.3_other.apk", new FileDownload.Callback() {
-                                    @Override
-                                    public void onError(Exception e) {
-                                        Logger.e(e);
-                                    }
-
-                                    @Override
-                                    public void onSuccess(File file) {
-                                        textView.setText(file.getAbsolutePath());
-                                    }
-
-                                    @Override
-                                    public void inProgress(float progress, long total) {
-                                        textView.setText(progress+"");
-                    }
-                });
+        System.out.println(destFileDir.length());
+//        destFileDir = Environment.getExternalStorageDirectory().getAbsolutePath();
+//        destFileName = "ee.mp4";
+//        new FileDownload(destFileDir, destFileName)
+//                .download("http://v1.365yg.com/8940aa92ca6996d82dd41c61181bd5e6/58a3ca5b/video/c/fe0b69223d524753bb668d61d62b46d9/", new FileDownload.Callback() {
+//                    @Override
+//                    public void onError(Exception e) {
+//                        Logger.e(e);
+//                    }
+//
+//                    @Override
+//                    public void onSuccess(File file) {
+//                        textView.setText(file.getAbsolutePath());
+//                    }
+//
+//                    @Override
+//                    public void inProgress(float progress, long total) {
+//                        textView.setText(progress + "");
+//                    }
+//                });
     }
 
 
