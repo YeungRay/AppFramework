@@ -1,6 +1,7 @@
 package com.baishan.greendaodemo.ui.main;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -12,9 +13,13 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import rx.Observable;
+import rx.Subscriber;
+import rx.functions.Func1;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View {
 
+    private static final String TAG = "MainActivity";
     @BindView(R.id.textView)
     TextView textView;
     @BindView(R.id.button)
@@ -34,7 +39,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     protected void processLogic(Bundle savedInstanceState) {
-        System.out.println(destFileDir.length());
+//        System.out.println(destFileDir.length());
 //        destFileDir = Environment.getExternalStorageDirectory().getAbsolutePath();
 //        destFileName = "ee.mp4";
 //        new FileDownload(destFileDir, destFileName)
@@ -54,6 +59,34 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 //                        textView.setText(progress + "");
 //                    }
 //                });
+        Observable.create(new Observable.OnSubscribe<String>() {
+            @Override
+            public void call(Subscriber<? super String> subscriber) {
+                subscriber.onNext("123");
+                subscriber.onCompleted();
+            }
+        })
+                .flatMap(new Func1<String, Observable<String>>() {
+                    @Override
+                    public Observable<String> call(String s) {
+                        return Observable.just(null);
+                    }
+                }).subscribe(new Subscriber<String>() {
+            @Override
+            public void onCompleted() {
+                Log.i(TAG,"onCompleted");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.i(TAG,"onError");
+            }
+
+            @Override
+            public void onNext(String s) {
+                Log.i(TAG,"onNext"+s);
+            }
+        });
     }
 
 
